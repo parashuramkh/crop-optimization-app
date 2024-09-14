@@ -1,6 +1,12 @@
 allow_embedding: false
-name: Material Design 1
-package_name: Material_Design_1
+db_schema:
+  table_1:
+    client: none
+    columns: []
+    server: full
+    title: Table 1
+name: Crop Optimization app
+package_name: Crop_Optimization_app
 runtime_options:
   client_version: '3'
   server_spec: {base: python310-standard}
