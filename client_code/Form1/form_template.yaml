@@ -1,5 +1,22 @@
 components:
-- layout_properties: {slot: default}
+- components:
+  - layout_properties: {grid_position: 'FSUUPP,WQKXSW'}
+    name: headline_1
+    properties: {align: center, role: headline, text: Welcome to Crop Optimization Tool}
+    type: Label
+  - layout_properties: {grid_position: 'RCDDUJ,UFEZLY'}
+    name: label_1
+    properties: {text: Enter Your Name}
+    type: Label
+  - layout_properties: {grid_position: 'UZRRXT,FJUYRS'}
+    name: label_2
+    properties: {text: Enter Your Pincode}
+    type: Label
+  - layout_properties: {grid_position: 'WUSYJV,CRWYTL'}
+    name: label_3
+    properties: {text: Enter Your Land Size Area}
+    type: Label
+  layout_properties: {slot: default}
   name: content_panel
   properties: {}
   type: ColumnPanel
