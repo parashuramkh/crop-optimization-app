@@ -1,66 +1,158 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" crossorigin="anonymous">
 
-<div class="structure">
-  <div class="app-bar" anvil-drop-container=".anvil-container" anvil-drop-redirect=".placeholder">
-    <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-hide-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
-    <a class="sidebar-toggle anvil-designer-only" anvil-if-slot-empty="top-left-btn" anvil-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn"><i class="fa fa-blank"></i></a>
-    <div class="top-left-btn" anvil-slot="top-left-btn"></div>
-    <div class="title" anvil-slot="title">
-      <div class="placeholder anvil-designer-only" anvil-if-slot-empty="title" anvil-drop-here>Drop title here</div>
-    </div>
-    <div class="app-bar-nav" anvil-slot="nav-right">
-      <div class="placeholder anvil-designer-only" anvil-if-slot-empty="nav-right" anvil-drop-here>Drop a FlowPanel here</div>
-    </div>
-    <div style="clear:both"></div>
+<div class="header">
+  <h1>Welcome to the Crop Optimization System</h1>
+  <div class="header-images">
+    <img src="https://static.wixstatic.com/media/7d5a65_9525c98a8a2c4c7e9193e78a3039d6bd~mv2.png/v1/fill/w_398,h_186,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Deenabandh_edited_edited.png" alt="Deenabandhu Logo" class="header-image left">
+    <img src="https://race.reva.edu.in/wp-content/uploads/2020/11/Reva-logo-1-1.png" alt="Reva University Logo" class="header-image right">
   </div>
-
-  <div class="nav-holder">
-    <div class="left-nav anvil-measure-this" anvil-slot-repeat="left-nav" anvil-drop-container=">.anvil-container">
-    </div>
-    <div class="left-nav-placeholder anvil-designer-only" anvil-if-slot-empty="left-nav" anvil-drop-slot="left-nav">
-      <div class="prompt">To add a sidebar, drop a ColumnPanel here.</div>
-    </div>
-
-    <div class="content">
-      <div anvil-slot-repeat="default" class="anvil-measure-this"></div>
-      <div class="placeholder drop-here" anvil-if-slot-empty="default" anvil-drop-slot="default">Drop a ColumnPanel here.</div>
-    </div>
-  </div>
-  <div class="nav-shield"></div>
 </div>
-<div anvil-drop-default anvil-drop-redirect=".placeholder" anvil-drop-container=".anvil-container"></div>
 
-<script>
-  function hideSidebar() {
-    var ln = $('.structure > .nav-holder > .left-nav');
-    ln.animate({left: -ln.outerWidth()}, function() {
-      ln.removeClass("in-transition shown").addClass("hidden");
-      $('.nav-shield').removeClass("shown");
-      $(window).trigger('resize');
-    });
+<div class="container">
+  <div class="greeting">
+    <label id="greeting_label"></label>
+  </div>
+
+  <div class="input-section">
+    <div>
+      <label for="name_input">Your Name:</label>
+      <input type="text" id="name_input" anvil-slot="name_input" placeholder="Enter your name" />
+    </div>
+    
+    <div>
+      <label for="pincode_input">Your PIN Code:</label>
+      <input type="text" id="pincode_input" anvil-slot="pincode_input" placeholder="Enter your PIN code" />
+    </div>
+    
+    <div>
+      <label for="land_size_input">Your Land Size (in acres):</label>
+      <input type="text" id="land_size_input" anvil-slot="land_size_input" placeholder="Enter land size" />
+    </div>
+    
+    <button id="submit_button" anvil-slot="submit_button">Get Optimized Crop</button>
+  </div>
+
+  <div class="output-section" anvil-slot="output_section">
+    <!-- Your module's output will be displayed here after prediction -->
+  </div>
+</div>
+
+<div class="footer">
+  <img src="https://static.wixstatic.com/media/7d5a65_9525c98a8a2c4c7e9193e78a3039d6bd~mv2.png/v1/fill/w_398,h_186,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Deenabandh_edited_edited.png" alt="Deenabandhu Logo" class="footer-image">
+  <div class="footer-text">
+    <p>All rights reserved (2024)</p>
+    <p>For any grievances, please reach out to:</p>
+    <p>Parashuram Hadimain, Email: <a href="mailto:parashuramsu@gmail.com">parashuramsu@gmail.com</a></p>
+    <p>Deenabandhu Social Service Organization, Email: <a href="mailto:harsh@deenabandhu.org.in">harsh@deenabandhu.org.in</a></p>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #d4edda; /* Light green background for the body */
+    font-family: 'Roboto', sans-serif;
   }
-  
-  function showSidebar() {
-    var ln = $('.structure > .nav-holder > .left-nav');
-    $('.nav-shield').addClass("shown");
-    ln.addClass("shown").removeClass("hidden").css({left: "-100%"}).animate({left: 0}, function() {
-      ln.removeClass("in-transition");
-    });
-    $(window).trigger('resize');
+
+  .header {
+    text-align: center;
+    background-color: white; /* White header */
+    padding: 10px 0;
   }
-  
-  $('.sidebar-toggle, .nav-shield').off('click').on('click', function() {
-    var ln = $('.structure > .nav-holder > .left-nav');
-    if (ln.is(":visible") || $('.nav-shield').is(".shown")) {
-      hideSidebar();
-    } else if(!ln.is(":empty")) {
-      showSidebar();
-    }
-  });
-  
-  $('.left-nav').off('click').on('click', 'a, button', function() {
-    if ($('.nav-shield').is(":visible")) {
-      $('.nav-shield').trigger('click');
-    }
-  });
-</script>
+
+  .header h1 {
+    color: #155724; /* Dark green title */
+    margin: 0;
+  }
+
+  .header-images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .header-image {
+    max-height: 50px; /* Optimize image size */
+    margin: 0 10px;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background-color: white; /* White background for the container */
+  }
+
+  .input-section div {
+    margin-bottom: 15px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #218838;
+  }
+
+  .output-section {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    background-color: #f8f9fa; /* Light background for output */
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align footer content to the left */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer-image {
+    max-height: 100px; /* Make the Deenabandhu logo bigger */
+    margin-right: 20px; /* Space between logo and text */
+  }
+
+  .footer-text {
+    text-align: left; /* Align footer text to the left */
+  }
+
+  .footer p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+
+  .footer a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+</style>

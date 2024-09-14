@@ -66,4 +66,42 @@ class Form1(Form1Template):
             # Analyze and display weather data in a table
             analyzed_weather = analyze_weather(weather_data)
             weather_df = pd.DataFrame({
-                'Parameter': ['Temperature
+                'Parameter': ['Temperature (°F)', 'Humidity (%)', 'pH', 'Rainfall (inches)'],
+                'Value': [analyzed_weather['temperature'], analyzed_weather['humidity'], analyzed_weather['ph'], analyzed_weather['rainfall']]
+            })
+
+            # Display weather data in the output section
+            self.output_section.clear()  # Clear previous output
+            self.output_section.add_component(Label(text="Weather Data:", bold=True))
+            self.output_section.add_component(DataGrid(data=weather_df.to_dict(orient='records')))
+
+            # Get crop predictions
+            predicted_crops = get_predictions_from_model(user_pincode, land_size)
+
+            # Display predicted crops
+            if predicted_crops:
+                self.output_section.add_component(Label(text="Top Recommended Crops:", bold=True))
+                self.output_section.add_component(Label(text="\n".join(predicted_crops)))
+            else:
+                self.output_section.add_component(Label(text="No crops predicted."))
+
+        else:
+            alert(f"Pincode {user_pincode} not found in the data.")
+
+# Replace the following functions with your actual implementations
+def fetch_weather_data(latitude, longitude, date, api_key):
+    # Placeholder for fetching weather data
+    return {
+        'temperature': 75,
+        'humidity': 60,
+        'ph': 6.5,
+        'rainfall': 0.1
+    }
+
+def analyze_weather(weather_data):
+    # Placeholder for analyzing weather data
+    return weather_data
+
+def get_predictions_from_model(user_pincode, land_size):
+    # Placeholder for crop prediction logic
+    return ["Wheat", "Rice"]
